@@ -1,2 +1,2 @@
-import { getPhotosCollection } from "./utils.js";
+import { getPhotosCollection } from './utils.js';
 console.log(getPhotosCollection());

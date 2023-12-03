@@ -37,4 +37,4 @@ const AvatarNumber = {
   MAX: 6,
 };
 
-export {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber}
+export {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber};

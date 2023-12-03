@@ -1,4 +1,4 @@
-import {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber} from './data.js'
+import {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber} from './data.js';
 
 const getRandomInteger = (min, max) => {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
