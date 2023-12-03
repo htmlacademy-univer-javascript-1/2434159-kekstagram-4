@@ -1,2 +1,3 @@
 import { getPhotosCollection } from './utils.js';
-console.log(getPhotosCollection());
+import { drawPictures } from './mini-photos.js';
+drawPictures(getPhotosCollection());
