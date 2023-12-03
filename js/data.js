@@ -27,11 +27,6 @@ const LikesCount = {
   MAX: 200
 };
 
-const UrlNumber = {
-  MIN: 1,
-  MAX: 25
-};
-
 const CommentsCount = {
   MIN: 0,
   MAX: 30
@@ -42,4 +37,4 @@ const AvatarNumber = {
   MAX: 6,
 };
 
-export {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, UrlNumber, CommentsCount, AvatarNumber}
+export {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber}

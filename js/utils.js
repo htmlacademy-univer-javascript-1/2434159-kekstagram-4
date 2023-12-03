@@ -1,4 +1,4 @@
-import {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, UrlNumber, CommentsCount, AvatarNumber} from './data.js'
+import {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber} from './data.js'
 
 const getRandomInteger = (min, max) => {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
@@ -37,7 +37,7 @@ const getId = () => getUniqueRandomId(IdNumber.MIN,IdNumber.MAX,usedId);
 const getLikes = () => getRandomInteger(LikesCount.MIN, LikesCount.MAX);
 const getComments = () => {
   const comments = [];
-  const numComments = getRandomInteger(0, 30);
+  const numComments = getRandomInteger(CommentsCount.MIN, CommentsCount.MAX);
   for (let i = 0; i <= numComments - 1; i++) {
     const comment = {
       id: i,
