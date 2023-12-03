@@ -1,2 +1,3 @@
 import { getPhotosCollection } from './utils.js';
-console.log(getPhotosCollection());
+import { drawPictures } from './draw-photos.js';
+drawPictures(getPhotosCollection());

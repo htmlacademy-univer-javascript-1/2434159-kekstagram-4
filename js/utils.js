@@ -51,7 +51,7 @@ const getComments = () => {
   return comments;
 };
 
-const generatePhotoDescription = () => {
+const generatePhotoObject = () => {
   const id = getId();
   const photo = {
     id: id,
@@ -63,4 +63,4 @@ const generatePhotoDescription = () => {
 
   return photo;
 };
-export const getPhotosCollection = () => Array.from({length:PHOTOS_COUNT}, generatePhotoDescription);
+export const getPhotosCollection = () => Array.from({length:PHOTOS_COUNT}, generatePhotoObject);
