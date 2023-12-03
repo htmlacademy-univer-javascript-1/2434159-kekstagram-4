@@ -1,11 +1,11 @@
-export const drawPictures = (photosCollection) => {
+export const drawPictures = (photos) => {
   const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-  const photosList = document.querySelector('.pictures');
+  const thumbnails = document.querySelector('.pictures');
 
   const photosListFragment = document.createDocumentFragment();
 
-  photosCollection.forEach(({url, likes, description, comments}) => {
+  photos.forEach(({url, likes, description, comments}) => {
     const photoElement = photoTemplate.cloneNode(true);
     photoElement.querySelector('.picture__img').src = url;
     photoElement.querySelector('.picture__img').alt = description;
@@ -14,5 +14,5 @@ export const drawPictures = (photosCollection) => {
     photosListFragment.append(photoElement);
   });
 
-  photosList.append(photosListFragment);
+  thumbnails.append(photosListFragment);
 };
