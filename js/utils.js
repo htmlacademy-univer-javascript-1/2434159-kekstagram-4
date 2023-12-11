@@ -52,10 +52,10 @@ const getComments = () => {
 };
 
 const generatePhotoDescription = () => {
-  const id = getId();
+  const i = getId();
   const photo = {
-    id: id,
-    url: `photos/${id}.jpg`,
+    id: i,
+    url: `photos/${i}.jpg`,
     description: 'Посмотрите, какую фотографию я сделал!',
     likes: getLikes(),
     comments: getComments()
