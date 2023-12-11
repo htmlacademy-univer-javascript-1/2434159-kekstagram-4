@@ -1,3 +1,5 @@
+import { openPhoto } from './big-photo.js';
+
 export const drawPictures = (photos) => {
   const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -11,6 +13,7 @@ export const drawPictures = (photos) => {
     photoElement.querySelector('.picture__img').alt = description;
     photoElement.querySelector('.picture__likes').textContent = likes;
     photoElement.querySelector('.picture__comments').textContent = comments.length;
+    photoElement.addEventListener('click', () => {openPhoto(url, description, likes, comments);});
     photosListFragment.append(photoElement);
   });
 
