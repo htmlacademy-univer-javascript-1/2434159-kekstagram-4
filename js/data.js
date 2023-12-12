@@ -17,6 +17,8 @@ const MESSAGES = [
 
 const PHOTOS_COUNT = 25;
 
+const COMMENT_STEP = 5;
+
 const IdNumber = {
   MIN: 1,
   MAX: 25
@@ -37,4 +39,4 @@ const AvatarNumber = {
   MAX: 6,
 };
 
-export {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber};
+export {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber, COMMENT_STEP};
