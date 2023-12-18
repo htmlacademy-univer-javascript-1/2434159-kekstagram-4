@@ -64,3 +64,9 @@ const generatePhotoDescription = () => {
   return photo;
 };
 export const getPhotosCollection = () => Array.from({length:PHOTOS_COUNT}, generatePhotoDescription);
+
+export const onDocumentKeydown = (evt, closingFunc) => {
+  if (evt.key === 'Escape') {
+    closingFunc(evt);
+  }
+};
