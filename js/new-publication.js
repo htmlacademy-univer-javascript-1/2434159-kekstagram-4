@@ -1,5 +1,5 @@
-import { onDocumentKeydown } from './utils.js';
-import { MAX_HASHTAGS_COUNT, MAX_DESCRIPTION_LENGTH } from './data.js';
+import { isEscape } from './utils.js';
+import { MAX_HASHTAGS_COUNT, MAX_DESCRIPTION_LENGTH, Error} from './data.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadInput = uploadForm.querySelector('.img-upload__input');
@@ -51,19 +51,19 @@ const validHashtages = (value) => {
 pristine.addValidator(
   hashtagsField,
   validateHashtagsCount,
-  'Максимальное количество хэштегов - 5'
+  Error.BAD_HASHTAG_LENGTH
 );
 
 pristine.addValidator(
   hashtagsField,
   validateHashtagsUniqueness,
-  'Не должно быть повторяющихся хэштегов'
+  Error.DUPLICATE_HASGTAG
 );
 
 pristine.addValidator(
   hashtagsField,
   validHashtages,
-  'Ошибка хештега'
+  Error.BAD_HASHTAG
 );
 
 const validateDescription = (value) => value.trim().length <= MAX_DESCRIPTION_LENGTH;
@@ -71,14 +71,14 @@ const validateDescription = (value) => value.trim().length <= MAX_DESCRIPTION_LE
 pristine.addValidator(
   descriptionField,
   validateDescription,
-  'Описание не может быть больше 140 символов'
+  Error.BAD_DESCRIPTION_LENGTH
 );
 
 function closeOverlay(){
   imageOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   closeButton.removeEventListener('click', closeOverlay);
-  document.removeEventListener('keydown', onDocumentKeydown(closeOverlay));
+  document.removeEventListener('keydown', isEscape, closeOverlay);
   uploadInput.addEventListener('click', openOverlay);
   uploadInput.value = null;
   hashtagsField.textContent = '';
@@ -89,7 +89,7 @@ function openOverlay() {
   imageOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   closeButton.addEventListener('click', closeOverlay);
-  document.addEventListener('keydown', onDocumentKeydown(closeOverlay));
+  document.addEventListener('keydown', isEscape, closeOverlay);
   uploadInput.removeEventListener('click', openOverlay);
 }
 
@@ -102,7 +102,7 @@ hashtagsField.addEventListener('input', (evt) => {
     submitBtn.setAttribute('disabled', true);
   }
   else{
-    submitBtn.removeAttribute('disabled');
+    submitBtn.removeAttribute('disabled', isValid);
   }
 });
 
@@ -113,6 +113,6 @@ descriptionField.addEventListener('input', (evt) => {
     submitBtn.setAttribute('disabled', true);
   }
   else{
-    submitBtn.removeAttribute('disabled');
+    submitBtn.removeAttribute('disabled', isValid);
   }
 });
