@@ -15,6 +15,10 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
+const MAX_HASHTAGS_COUNT = 140;
+
+const MAX_DESCRIPTION_LENGTH = 140;
+
 const PHOTOS_COUNT = 25;
 
 const COMMENT_STEP = 5;
@@ -39,4 +43,6 @@ const AvatarNumber = {
   MAX: 6,
 };
 
-export {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber, COMMENT_STEP};
+export const Error = {BAD_HASHTAG_LENGTH: 'Максимальное кол-во хэштегов: 5', DUPLICATE_HASGTAG: 'Хэштеги не должны повторяться', BAD_HASHTAG: 'Ошибка в хэштеге', BAD_DESCRIPTION_LENGTH: 'Максимальная длина описания - 140'};
+
+export {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber, COMMENT_STEP, MAX_HASHTAGS_COUNT, MAX_DESCRIPTION_LENGTH};

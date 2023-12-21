@@ -64,3 +64,5 @@ const generatePhotoDescription = () => {
   return photo;
 };
 export const getPhotosCollection = () => Array.from({length:PHOTOS_COUNT}, generatePhotoDescription);
+
+export const isEscape = (evt) => evt.key === 'Escape';
