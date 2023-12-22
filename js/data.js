@@ -43,6 +43,15 @@ const AvatarNumber = {
   MAX: 6,
 };
 
+const SCALE = {
+  MIN: 25,
+  MAX: 100
+};
+
+const SCALE_STEP = 25;
+
+const DEFAULT_SCALE = 100;
+
 export const Error = {BAD_HASHTAG_LENGTH: 'Максимальное кол-во хэштегов: 5', DUPLICATE_HASGTAG: 'Хэштеги не должны повторяться', BAD_HASHTAG: 'Ошибка в хэштеге', BAD_DESCRIPTION_LENGTH: 'Максимальная длина описания - 140'};
 
-export {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber, COMMENT_STEP, MAX_HASHTAGS_COUNT, MAX_DESCRIPTION_LENGTH};
+export {NAMES, MESSAGES, PHOTOS_COUNT, IdNumber, LikesCount, CommentsCount, AvatarNumber, COMMENT_STEP, MAX_HASHTAGS_COUNT, MAX_DESCRIPTION_LENGTH, SCALE, SCALE_STEP, DEFAULT_SCALE};

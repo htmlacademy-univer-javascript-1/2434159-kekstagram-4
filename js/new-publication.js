@@ -1,5 +1,7 @@
 import { isEscape } from './utils.js';
 import { MAX_HASHTAGS_COUNT, MAX_DESCRIPTION_LENGTH, Error} from './data.js';
+import { initEffect, resetEffect } from './effect.js';
+import { resetScale } from './scaling.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadInput = uploadForm.querySelector('.img-upload__input');
@@ -75,6 +77,8 @@ pristine.addValidator(
 );
 
 function closeOverlay(){
+  resetEffect();
+  resetScale();
   imageOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   closeButton.removeEventListener('click', closeOverlay);
@@ -86,6 +90,7 @@ function closeOverlay(){
 }
 
 function openOverlay() {
+  initEffect();
   imageOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   closeButton.addEventListener('click', closeOverlay);
