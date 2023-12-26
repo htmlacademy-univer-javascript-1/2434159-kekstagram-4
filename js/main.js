@@ -1,4 +1,7 @@
-import { getPhotosCollection } from './utils.js';
-import { drawPictures } from './mini-photos.js';
+import { loadData } from './fetch.js';
+import { onSuccess, onError } from './mini-photos.js';
 
-drawPictures(getPhotosCollection());
+
+loadData(onSuccess, onError);
+
+

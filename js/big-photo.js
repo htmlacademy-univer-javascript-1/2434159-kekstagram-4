@@ -51,17 +51,17 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-function openPhoto(url, description, likes, comments) {
+function openPhoto(photo) {
   bigPhoto.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  bigPhoto.querySelector('.big-picture__img img').src = url;
-  bigPhoto.querySelector('.likes-count').textContent = likes;
-  bigPhoto.querySelector('.comments-count').textContent = comments.length;
-  bigPhoto.querySelector('.social__caption').textContent = description;
+  bigPhoto.querySelector('.big-picture__img img').src = photo.url;
+  bigPhoto.querySelector('.likes-count').textContent = photo.likes;
+  bigPhoto.querySelector('.comments-count').textContent = photo.comments.length;
+  bigPhoto.querySelector('.social__caption').textContent = photo.description;
   activeComments.textContent = '0';
   const commentsContainer = document.querySelector('.social__comments');
 
-  loadComments(commentsContainer, comments);
+  loadComments(commentsContainer, photo.comments);
 
   commentsLoader.classList.remove('hidden');
   renderMoreComments();
