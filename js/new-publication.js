@@ -2,6 +2,8 @@ import { isEscape } from './utils.js';
 import { MAX_HASHTAGS_COUNT, MAX_DESCRIPTION_LENGTH, Error} from './data.js';
 import { initEffect, resetEffect } from './effect.js';
 import { resetScale } from './scaling.js';
+import { onSuccess, onError } from './new-publication-send.js';
+import { uploadData } from './fetch.js';
 
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadInput = uploadForm.querySelector('.img-upload__input');
@@ -10,6 +12,9 @@ const closeButton = uploadForm.querySelector('.img-upload__cancel');
 const hashtagsField = uploadForm.querySelector('.text__hashtags');
 const descriptionField = uploadForm.querySelector('.text__description');
 const submitBtn = uploadForm.querySelector('#upload-submit');
+
+const effectsPreview = uploadForm.querySelectorAll('.effects__preview');
+const imgUploadPreview = uploadForm.querySelector('.img-upload__preview img');
 
 const validationForm = /^#[0-9a-zа-яё]{1,19}$/i;
 
@@ -76,26 +81,41 @@ pristine.addValidator(
   Error.BAD_DESCRIPTION_LENGTH
 );
 
-function closeOverlay(){
+const changePicture = () => {
+  const picture = uploadInput.files[0];
+  imgUploadPreview.src = URL.createObjectURL(picture);
+  effectsPreview.forEach((effect) => {
+    effect.style.backgroundImage = `url('${imgUploadPreview.src}')`;
+  });
+};
+
+export function closeOverlay(){
   resetEffect();
   resetScale();
+  pristine.reset();
   imageOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   closeButton.removeEventListener('click', closeOverlay);
-  document.removeEventListener('keydown', isEscape, closeOverlay);
-  uploadInput.addEventListener('click', openOverlay);
+  document.removeEventListener('keydown', onDocumentKeydown);
   uploadInput.value = null;
-  hashtagsField.textContent = '';
-  descriptionField.textContent = '';
+  uploadForm.reset();
+  submitBtn.removeAttribute('disabled', true);
+}
+
+export function onDocumentKeydown (evt) {
+  if(isEscape(evt) && !document.querySelector('.error')){
+    evt.preventDefault();
+    closeOverlay();
+  }
 }
 
 function openOverlay() {
   initEffect();
+  changePicture();
   imageOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   closeButton.addEventListener('click', closeOverlay);
-  document.addEventListener('keydown', isEscape, closeOverlay);
-  uploadInput.removeEventListener('click', openOverlay);
+  document.addEventListener('keydown', onDocumentKeydown);
 }
 
 uploadInput.addEventListener('change', openOverlay);
@@ -120,4 +140,12 @@ descriptionField.addEventListener('input', (evt) => {
   else{
     submitBtn.removeAttribute('disabled', isValid);
   }
+
 });
+
+uploadForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const formData = new FormData(evt.target);
+  uploadData(onSuccess, onError, formData);
+});
+
